@@ -1,0 +1,63 @@
+@model MomoPasteAPI.Models.Paste
+@{
+    Layout = "_Base.cshtml";
+}
+<p style="padding: 15px;"></p>
+<center><h1 class="display-2"><a href="/" class="headerText">Momo 🍑</a></h1></center>
+
+<meta property="og:title" content="🍑 Momo Paste: Create a new paste" />
+<meta name="theme-color" content="#f98b88">
+
+<form method="post">
+    <div class="form-group">
+        <h1 class="display-6">Title</h1>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <h1 class="display-6">Content</h1>
+        <textarea class="form-control" id="content" name="content" rows="12" style="width: 100%" required></textarea>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <h1 class="display-6">Delete After Viewing?</h1>
+        <select id="delete" name="delete">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <h1 class="display-6">Expires</h1>
+        <select id="expires" name="expires">
+            <option value="0">No</option>
+            <option value="3">3 minutes</option>
+            <option value="5">5 minutes</option>
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">1 hour</option>
+            <option value="120">2 hours</option>
+            <option value="240">4 hours</option>
+            <option value="480">8 hours</option>
+            <option value="720">12 hours</option>
+            <option value="1440">1 day</option>
+            <option value="2880">2 days</option>
+            <option value="3120">3 days</option>
+            <option value="5760">4 days</option>
+            <option value="7200">5 days</option>
+            <option value="8640">6 days</option>
+            <option value="10080">1 week</option>
+        </select>
+
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-primary">Create Paste</button>
+</form>
