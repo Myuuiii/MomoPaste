@@ -3,8 +3,7 @@
 	Layout = "_Base.cshtml";
 }
 
-<meta property="og:title" content="@paste.Title" />
-<meta property="og:description" content=\"@ViewData["pasteDescription"]\" />
+<meta property="og:title" content="🍑 Momo Paste: @paste.Title" />
 <meta name="theme-color" content="#f98b88">
 
 
@@ -16,7 +15,7 @@
 @if (paste.InvalidateAfterViewing && paste.Previewed && !paste.Viewed)
 {
 	<div class="alert alert-info" role="alert">
-		This is a preview, after sharing this paste can only be viewed once.
+		This is a preview, after sharing this paste can only be viewed once. (NOTE THAT EMBEDS ARE NOT SUPPORTED AND WILL INVALIDATE THE PASTE UPON LOADING)
 	</div>
 }
 @if (paste.InvalidateAfterViewing && paste.Viewed)
@@ -34,4 +33,4 @@
 
 <br />
 
-<center><p id="postUrl">http://momo.myuuiii.moe/p/@paste.Id</p></center>
+<center><code id="postUrl" style="padding: 15px;">`http://momo.myuuiii.moe/p/@paste.Id`</code></center>

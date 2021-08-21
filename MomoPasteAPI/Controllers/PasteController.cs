@@ -33,7 +33,6 @@ namespace MomoPasteAPI.Controllers
 					Paste paste = _db.Pastes.Single(p => p.Id == id);
 
 					ViewData["paste"] = paste;
-					ViewData["pasteDescription"] = $"Characters: {paste.Content.ToCharArray().Length} \nCreated on: {paste.Created.Day} {paste.Created.Month} {paste.Created.Year}";
 
 					if (!paste.Previewed && paste.InvalidateAfterViewing && !paste.IsExpired())
 					{
@@ -104,7 +103,6 @@ namespace MomoPasteAPI.Controllers
 				_db.SaveChanges();
 
 				ViewData["paste"] = paste;
-				ViewData["pasteDescription"] = $"Characters: {paste.Content.ToCharArray().Length} \nCreated on: {paste.Created.Day} {paste.Created.Month} {paste.Created.Year}";
 				return Redirect("/p/" + paste.Id);
 			}
 			catch (Exception e)
