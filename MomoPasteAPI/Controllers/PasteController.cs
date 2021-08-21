@@ -152,10 +152,11 @@ namespace MomoPasteAPI.Controllers
 	}
 
 	[HttpPost(Routes.V1.PasteRoutes.CreatePasteAPI)]
-	public ActionResult<Paste> CreatePasteAPI(Paste paste, Int32 expires = 0, Boolean invalidateAfterViewing = false)
+	public ActionResult<Paste> CreatePasteAPI([FromBody] Paste paste, [FromQuery] Int32 expires = 0, [FromQuery] Boolean invalidateAfterViewing = false)
 	{
 		try
 		{
+			paste.Id = Guid.NewGuid();
 			if (expires != 0)
 			{
 				paste.Expires = DateTime.Now.AddMinutes(expires);
