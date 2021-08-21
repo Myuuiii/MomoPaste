@@ -1,5 +1,14 @@
-# 🍑 Momo
+<div align="center">
 
+![Momo Logo](http://cdn.mutedevs.nl/git/Momo/MomoLogo.png)
+
+# Momo
+
+### Send copypastas, code, data dumps, whatever you want for free
+
+</div>
+
+<hr />
 
 ## What is Momo
 Momo is a service with which you can easily share code and other things in the form of text. Kind of like PasteBin. 
@@ -33,3 +42,5 @@ Create a new paste
 This route will create a new paste and return the url of the newly generated paste.
 
 
+
+*Each paste is currently limited to 100.000 characters*
