@@ -21,7 +21,7 @@ Create a new paste
 | Name                   | Description                                                        | Provided in |
 | ---------------------- | ------------------------------------------------------------------ | ----------- |
 | Title                  | The title of the paste                                             | Body        |
-| Content                | The contents of the paste                                          | Body        |
+| Content                | The contents of the paste (Base64 Encoded)                                         | Body        |
 
 #### Optional Parameters
 
