@@ -86,6 +86,11 @@ namespace MomoPasteAPI.Controllers
 		{
 			try
 			{
+				if (paste.Content.Length > 100000)
+				{
+					return View("./Views/TooLong.cshtml");
+				}
+
 				paste.Content = Helpers.Base64.Encode(paste.Content);
 
 				if (expires != 0)
@@ -102,7 +107,7 @@ namespace MomoPasteAPI.Controllers
 				ViewData["pasteDescription"] = $"Characters: {paste.Content.ToCharArray().Length} \nCreated on: {paste.Created.Day} {paste.Created.Month} {paste.Created.Year}";
 				return Redirect("/p/" + paste.Id);
 			}
-			catch
+			catch (Exception e)
 			{
 				return BadRequest();
 			}
@@ -149,28 +154,33 @@ namespace MomoPasteAPI.Controllers
 			{
 				return BadRequest();
 			}
-	}
+		}
 
-	[HttpPost(Routes.V1.PasteRoutes.CreatePasteAPI)]
-	public ActionResult<Paste> CreatePasteAPI([FromBody] Paste paste, [FromQuery] Int32 expires = 0, [FromQuery] Boolean invalidateAfterViewing = false)
-	{
-		try
+		[HttpPost(Routes.V1.PasteRoutes.CreatePasteAPI)]
+		public ActionResult<Paste> CreatePasteAPI([FromBody] Paste paste, [FromQuery] Int32 expires = 0, [FromQuery] Boolean invalidateAfterViewing = false)
 		{
-			paste.Id = Guid.NewGuid();
-			if (expires != 0)
+			try
 			{
-				paste.Expires = DateTime.Now.AddMinutes(expires);
-			}
-			paste.InvalidateAfterViewing = invalidateAfterViewing;
+				if (Helpers.Base64.Decode(paste.Content).Length > 100000)
+				{
+					return BadRequest("Your paste size is limited to 100.000 characters");
+				}
 
-			_db.Pastes.Add(paste);
-			_db.SaveChanges();
-			return paste;
-		}
-		catch
-		{
-			return BadRequest();
+				paste.Id = Guid.NewGuid();
+				if (expires != 0)
+				{
+					paste.Expires = DateTime.Now.AddMinutes(expires);
+				}
+				paste.InvalidateAfterViewing = invalidateAfterViewing;
+
+				_db.Pastes.Add(paste);
+				_db.SaveChanges();
+				return paste;
+			}
+			catch
+			{
+				return BadRequest();
+			}
 		}
 	}
-}
 }
