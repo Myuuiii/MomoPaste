@@ -1,0 +1,38 @@
+@{
+	MomoPasteAPI.Models.Paste paste = ViewData["paste"] as MomoPasteAPI.Models.Paste;
+	Layout = "_Base.cshtml";
+}
+
+<meta property="og:title" content="@paste.Title" />
+@* <meta property="og:image" content="http://my.site.com/images/thumb.png" /> *@
+<meta property="og:description" content=\"@ViewData["pasteDescription"]\" />
+<meta name="theme-color" content="#f98b88">
+
+
+<p style="padding: 15px;"></p>
+<center><h1 class="display-2"><a href="/" class="headerText">Momo 🍑</a></h1></center>
+
+<h1 class="display-5">@paste.Title</h1>
+
+@if (paste.InvalidateAfterViewing && paste.Previewed && !paste.Viewed)
+{
+	<div class="alert alert-info" role="alert">
+		This is a preview, after sharing this paste can only be viewed once.
+	</div>
+}
+@if (paste.InvalidateAfterViewing && paste.Viewed)
+{
+	<div class="alert alert-danger" role="alert">
+		This paste will be invalidated after reloading/refreshing the page.
+	</div>
+}
+
+<p class="lead">Created on: @paste.Created.Day/@paste.Created.Month/@paste.Created.Year</p>
+<hr class="my-4">
+<div style="background-color: #333; width: 100%; padding: 25px;overflow: scroll;">
+	<p style="white-space: pre; color: PeachPuff;">@paste.GetContent()</p>
+</div>
+
+<br />
+
+<center><p id="postUrl">http://momo.myuuiii.moe/p/@paste.Id</p></center>
